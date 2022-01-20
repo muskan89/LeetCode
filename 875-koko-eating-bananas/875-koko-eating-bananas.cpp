@@ -43,12 +43,10 @@ public:
                 piles[i]=0;
             }
             i++;
-            if(h<0){
+            if(h<0 || (h==0 && i<n)){
                 return false;
             }
-            if(h==0 && i<n){
-                return false;
-            }
+            
         }
         return true;
         
