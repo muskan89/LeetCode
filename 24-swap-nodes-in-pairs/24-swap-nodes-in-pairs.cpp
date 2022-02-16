@@ -20,10 +20,9 @@ public:
         curr->next=prev;
         prev=curr;
         curr=nxt;
-        if(curr!=NULL){
-            nxt=curr->next;
-            curr->next=prev;
-        }
+        nxt=curr->next;
+        curr->next=prev;
+
         head->next=swapPairs(nxt);
         return curr;
     }
