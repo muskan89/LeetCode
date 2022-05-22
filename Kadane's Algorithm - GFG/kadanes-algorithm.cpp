@@ -13,11 +13,7 @@ class Solution{
         
         // Your code here
         long long sum=0,maxi=INT_MIN;
-        for(int i=0;i<n;i++){
-            if(arr[i]>maxi){
-                maxi=arr[i];
-            }
-        }
+        
         for(int i=0;i<n;i++){
             sum+=arr[i];
             if(sum>maxi){
