@@ -12,7 +12,7 @@ public:
         }
        
         vector<int>dista(101,INT_MAX);
-        dista[0]=0;
+        //dista[0]=0;
         dista[k]=0;
         queue<int>q;
         q.push(k);
@@ -28,7 +28,7 @@ public:
             }
             
         }
-        int y=*max_element(dista.begin(),dista.begin()+n+1);
+        int y=*max_element(dista.begin()+1,dista.begin()+n+1);
         if(y==INT_MAX){
             return -1;
         }
