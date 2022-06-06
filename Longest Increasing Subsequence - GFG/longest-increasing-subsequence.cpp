@@ -9,7 +9,7 @@ class Solution
 {
     public:
     //Function to find length of longest increasing subsequence.
-    /*int binary_search(vector<int>dp,int start,int end,int key){
+    int binary_search(vector<int>dp,int start,int end,int key){
         while((end-start)>1){
             int mid=start+((end-start)/2);
             if(dp[mid]==key){
@@ -22,7 +22,7 @@ class Solution
             }
         }
         return end;
-    }*/
+    }
     int longestSubsequence(int n, int a[])
     {
        // your code here
@@ -35,7 +35,7 @@ class Solution
            }else if(a[i]>dp[length-1]){
                dp[length++]=a[i];
            }else{
-               dp[lower_bound(dp.begin(),dp.begin()+length,a[i])-dp.begin()]=a[i];
+               dp[binary_search(dp,0,length-1,a[i])]=a[i];
            }
        }
        return length;
