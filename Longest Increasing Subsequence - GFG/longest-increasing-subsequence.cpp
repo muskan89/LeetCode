@@ -9,19 +9,36 @@ class Solution
 {
     public:
     //Function to find length of longest increasing subsequence.
+    int binary_search(vector<int>dp,int start,int end,int key){
+        while((end-start)>1){
+            int mid=start+((end-start)/2);
+            if(dp[mid]==key){
+                end=mid;
+            }
+            if(dp[mid]<key){
+                start=mid;
+            }else{
+                end=mid;
+            }
+        }
+        return end;
+    }
     int longestSubsequence(int n, int a[])
     {
        // your code here
-       vector<int>dp(n,1);
-       for(int i=0;i<n;i++){
-           for(int j=i+1;j<n;j++){
-               if(a[i]<a[j]){
-                   dp[j]=max(dp[j],dp[i]+1);
-               }
+       vector<int>dp(n);
+       int length=1;
+       dp[0]=a[0];
+       for(int i=1;i<n;i++){
+           if(a[i]<dp[0]){
+               dp[0]=a[i];
+           }else if(a[i]>dp[length-1]){
+               dp[length++]=a[i];
+           }else{
+               dp[binary_search(dp,0,length-1,a[i])]=a[i];
            }
        }
-       int ans=*max_element(dp.begin(),dp.end());
-       return ans;
+       return length;
     }
 };
 
