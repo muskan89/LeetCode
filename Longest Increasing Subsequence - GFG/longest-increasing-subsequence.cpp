@@ -10,7 +10,7 @@ class Solution
     public:
     //Function to find length of longest increasing subsequence.
     int binary_search(vector<int>dp,int start,int end,int key){
-        while((end-start)>1){
+        while((end-start)>=2){
             int mid=start+((end-start)/2);
             if(dp[mid]==key){
                 end=mid;
