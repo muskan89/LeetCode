@@ -21,12 +21,9 @@ class Solution{
 	        for(int j=i+1;j<n;j++){
 	            if(arr[i]<arr[j]){
 	                dp[j]=max(dp[i]+arr[j],dp[j]);
+	                //dp[j]=dp[i]+arr[j];
 	            }
 	        }
-	        /*for(int k=0;k<n;k++){
-	            cout<<dp[k]<<" ";
-	        }
-	        cout<<"\n";*/
 	    }
 	    int ans=*max_element(dp.begin(),dp.end());
 	    return ans;
