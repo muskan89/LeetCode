@@ -11,16 +11,22 @@ class Solution{
 	{  
 	    // Your code goes here
 	    //1 101 2 3 100
-	    //0 101 0 0 0
-	    //
+	    //1 102 3 4 101
+	    //1 102 3 6 103
+	    //1 102 3 6 106
 	    vector<int>dp(n);
 	    for(int i=0;i<n;i++){
 	        dp[i]=max(arr[i],dp[i]);
+	        //dp[i]=arr[i];
 	        for(int j=i+1;j<n;j++){
 	            if(arr[i]<arr[j]){
 	                dp[j]=max(dp[i]+arr[j],dp[j]);
 	            }
 	        }
+	        /*for(int k=0;k<n;k++){
+	            cout<<dp[k]<<" ";
+	        }
+	        cout<<"\n";*/
 	    }
 	    int ans=*max_element(dp.begin(),dp.end());
 	    return ans;
