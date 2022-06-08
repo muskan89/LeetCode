@@ -12,15 +12,19 @@ class Solution {
         q.push(0);
         vector<bool>visited(V+1,false);
         vector<int>ans;
-        ans.push_back(0);
+        //ans.push_back(0);
         while(!q.empty()){
             int r=q.front();
             q.pop();
+            if(!visited[r]){
+                visited[r]=true;
+                ans.push_back(r);
+            }
             for(int i=0;i<adj[r].size();i++){
                 if(!visited[adj[r][i]]){
                     q.push(adj[r][i]);
-                    visited[adj[r][i]]=true;
-                    ans.push_back(adj[r][i]);
+                //     visited[adj[r][i]]=true;
+                //     ans.push_back(adj[r][i]);
                 }
             }
         }
