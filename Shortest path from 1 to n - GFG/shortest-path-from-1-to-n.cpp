@@ -12,15 +12,27 @@ public:
     int minimumStep(int n){
         //complete the function here
         int ans=0;
-        while(n>=3){
-            if(n%3){
-                ans+=(n%3);
-            }
-            n/=3;
-            ans++;
+        if(n==1){
+            return 0;
         }
         if(n==2){
-            ans++;
+            return 1;
+        }
+        while(n>1){
+            while(n%3==0){
+                n/=3;
+                ans++;
+            }
+            if(n==2){
+                n=1;
+                ans++;   
+            }
+            else if(n>1){
+                int prev=n;
+                n=(n-(n%3));
+                ans+=(prev-n);
+            }
+            
         }
         return ans;
     }
