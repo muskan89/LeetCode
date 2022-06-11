@@ -16,27 +16,6 @@ class Solution {
             sum+=adj[i].size();
         }
         return sum;
-         
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     }
 };
 
