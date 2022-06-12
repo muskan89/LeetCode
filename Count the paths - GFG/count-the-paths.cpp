@@ -5,28 +5,29 @@ using namespace std;
  // } Driver Code Ends
 class Solution {
 public:
-
-    
-
+    void dfs(vector<vector<int>>adj,int src,int des,int &cnt){
+        if(src==des){
+            cnt++;
+            return;
+        }
+        //vis[src]=true;
+        for(auto i:adj[src]){
+            dfs(adj,i,des,cnt);
+            
+        }
+        //vis[src]=false;
+        
+    }
 	int possible_paths(vector<vector<int>>edges, int n, int s, int d){
-	    
+	    // Code here
 	    vector<vector<int>>adj(n,vector<int>());
 	    for(auto it:edges){
 	        adj[it[0]].push_back(it[1]);
 	    }
-	    vector<int>vis(n,0);
-	    queue<int>q;
-	    q.push(s);
-	    vis[s]++;
-	    while(!q.empty()){
-	        int y=q.front();
-	        q.pop();
-	        for(int i=0;i<adj[y].size();i++){
-	            q.push(adj[y][i]);
-	            vis[adj[y][i]]++;
-	        }
-	    }
-	    return vis[d];
+	    //vector<bool>vis(n,false);
+	    int cnt=0;
+	    dfs(adj,s,d,cnt);
+	    return cnt;
 	}
 };
 
