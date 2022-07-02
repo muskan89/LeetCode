@@ -6,33 +6,35 @@ using namespace std;
 class Solution
 {
 	public:
-	//Function to return list containing vertices in Topological order. 
+	//Function to return list containing vertices in Topological order.
+	
+	void dfsTopo(int src,stack<int>&stk,int V,vector<bool>&vis, vector<int> adj[]){
+	    vis[src]=true;
+	    for(int i=0;i<adj[src].size();i++){
+	        if(vis[adj[src][i]]==false){
+	            dfsTopo(adj[src][i],stk,V,vis,adj);
+	        }
+	    }
+	    stk.push(src);
+	    
+	}
+	
+	
 	vector<int> topoSort(int V, vector<int> adj[]) 
 	{
 	    // code here
-	    vector<int>indeg(V,0);
-	    for(int i=0;i<V;i++){
-	        for(int j=0;j<adj[i].size();j++){
-	            indeg[adj[i][j]]++;
-	        }
-	    }
-	    queue<int>q;
 	    vector<int>ans;
+	    stack<int>stk;
+	    vector<bool>vis(V,false);
 	    for(int i=0;i<V;i++){
-	        if(indeg[i]==0){
-                q.push(i);
-            }
-	    }
-	    while(!q.empty()){
-	        int node=q.front();
-	        q.pop();
-	        ans.push_back(node);
-	        for(int i=0;i<adj[node].size();i++){
-	            indeg[adj[node][i]]--;
-	            if(indeg[adj[node][i]]==0){
-	                q.push(adj[node][i]);
-	            }
+	        if(vis[i]==false){
+	            dfsTopo(i,stk,V,vis,adj);
 	        }
+	    }
+	    while(!stk.empty()){
+	        int node=stk.top();
+	        stk.pop();
+	        ans.push_back(node);
 	    }
 	    return ans;
 	}
