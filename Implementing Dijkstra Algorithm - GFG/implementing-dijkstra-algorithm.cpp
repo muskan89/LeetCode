@@ -12,15 +12,15 @@ class Solution
     {
         // Code here
         vector<int>dis(V,INT_MAX);
-        //vector<bool>vis(V,false);
+        vector<bool>vis(V,false);
         priority_queue <pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>> > pq;
         dis[S]=0;
         pq.push(make_pair(0,S));
         while(!pq.empty()){
             int node=pq.top().second;
             pq.pop();
-            //if(vis[node])continue;
-            //vis[node]=true;
+            if(vis[node])continue;
+            vis[node]=true;
             for(int i=0;i<adj[node].size();i++){
                 if(dis[adj[node][i][0]]>(dis[node]+adj[node][i][1])){
                     dis[adj[node][i][0]]=dis[node]+adj[node][i][1];
