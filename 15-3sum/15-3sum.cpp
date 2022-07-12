@@ -13,6 +13,11 @@ public:
                     j++;
                     continue;
                 }
+                if(k<n-1 && nums[k]==nums[k+1]){
+                    k--;
+                    continue;
+                }
+                
                 //cout<<nums[i]<<" "<<nums[j]<<" "<<nums[k]<<"\n";
                 int x=nums[j]+nums[k];
                 if(x==y){
