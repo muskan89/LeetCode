@@ -1,24 +1,42 @@
 class MyHashMap {
 public:
     
-    vector<int>mp;
+    vector<vector<pair<int,int>>>mp;
+    const int size=10000;
     MyHashMap() {
-        mp.clear();
-        for(int i=0;i<1000001;i++){
-            mp.push_back(-1);
-        }
+        mp.resize(size);
     }
     
     void put(int key, int value) {
-        mp[key]=value;
+        int index=key%10000;
+        for(auto iter=mp[index].begin();iter != mp[index].end();iter++){
+            if(iter->first == key){
+                iter->second = value;
+                return;
+            }
+        }
+        mp[index].push_back({key,value});       
     }
     
     int get(int key) {
-        return mp[key];
+        int index=key%10000;
+        for(auto iter=mp[index].begin();iter != mp[index].end();iter++){
+            if(iter->first == key){
+                return iter->second;
+            }
+        }
+        return -1;
     }
     
     void remove(int key) {
-        mp[key]=-1;
+        int index=key%10000;
+        for(auto iter=mp[index].begin();iter != mp[index].end();iter++){
+            if(iter->first == key){
+                mp[index].erase(iter);
+                return;
+            }
+        }
+        
     }
 };
 
