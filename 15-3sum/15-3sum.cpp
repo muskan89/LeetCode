@@ -4,28 +4,23 @@ public:
         vector<vector<int>>ans;
         sort(nums.begin(),nums.end());
         int n=nums.size();
-        map<int,int>mp;
         for(int i=0;i<n;i++){
-            if(i>0 && nums[i]==nums[i-1])continue;
-            int y=-1*nums[i],j=i+1,k=n-1;
+            if(i>0 && nums[i]==nums[i-1]){
+                continue;
+            }
+            int j=i+1,k=n-1,b=-1*nums[i];
             while(j<n && j<k){
-                if(j>0 && nums[j]==nums[j-1] && j!=(i+1)){
+                if(nums[j]==nums[j-1] && (j!=(i+1))){
                     j++;
                     continue;
                 }
-                if(k<n-1 && nums[k]==nums[k+1]){
-                    k--;
-                    continue;
-                }
-                
-                //cout<<nums[i]<<" "<<nums[j]<<" "<<nums[k]<<"\n";
-                int x=nums[j]+nums[k];
-                if(x==y){
-                    vector<int>sub{nums[i],nums[j],nums[k]};
-                    ans.push_back(sub);
+                int a=nums[j]+nums[k];
+                if(a==b){
+                    vector<int>arr{nums[i],nums[j],nums[k]};
+                    ans.push_back(arr);
                     j++;
                     k--;
-                }else if(x>y){
+                }else if(a>b){
                     k--;
                 }else{
                     j++;
