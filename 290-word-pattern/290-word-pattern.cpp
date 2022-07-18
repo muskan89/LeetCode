@@ -1,57 +1,43 @@
 class Solution {
 public:
     bool wordPattern(string pattern, string s) {
-        unordered_map<string,char>mp;
-        unordered_map<char,string>kp;
-        vector<string>sli;
-        string str;
+        map<char,string>mpa;
+        map<string,char>mpb;
+        
+        int lenp=pattern.length();
+        string emp;
+        vector<string>strlist;
         for(char c:s){
-            if(c != ' '){
-                str+=c;
+            if(c==' '){
+                strlist.push_back(emp);
+                emp.clear();
             }else{
-                sli.push_back(str);
-                str="";
+                emp+=c;
             }
         }
-        sli.push_back(str);
-        int i=0,n=sli.size();
-        if(pattern.length() != n){
+        strlist.push_back(emp);
+        if(strlist.size() != pattern.length()){
             return false;
         }
-        string ans;
-        for(string c:sli){
-            if(mp.find(c) == mp.end() && i<n){
-                mp[c]=pattern[i];
-                ans+=pattern[i];
-            }else{
-                ans+=mp[c];
-            }
-            i++;
-        }
-        if(ans != pattern){
-            return false;
-        }
-        string kuch;
-        i=0;
-        for(char c:pattern){
-            if(kp.find(c) == kp.end() && i<n){
-                kp[c]=sli[i];
-                kuch+=sli[i];
-                if(i != (n-1)){
-                    kuch+=' ';
+        for(int i=0;i<lenp;i++){
+            if(mpa.find(pattern[i])!=mpa.end () ){
+                if(mpa[pattern[i]] != strlist[i]){
+                    return false;
                 }
             }else{
-                kuch+=kp[c];
-                if(i != (n-1)){
-                    kuch+=' ';
-                }
+                mpa[pattern[i]]=strlist[i];
             }
-            i++;
+            if(mpb.find(strlist[i])!=mpb.end() ){
+                if(mpb[strlist[i]] != pattern[i]){
+                    return false;
+                }
+            }else{
+                mpb[strlist[i]]=pattern[i];
+            }
         }
-        if(kuch != s){
+        if(mpa.size() != mpb.size()){
             return false;
         }
         return true;
-            
     }
 };
