@@ -10,25 +10,7 @@
  */
 class Solution {
 public:
-    ListNode* reverse(ListNode* l){
-        if(l==NULL){
-            return l;
-        }
-        if(l->next == NULL){
-            return l;
-        }
-        ListNode* curr=l,*prev=NULL,*next=NULL;
-        while(curr!=NULL){
-            next=curr->next;
-            curr->next=prev;
-            prev=curr;
-            curr=next;
-        }
-        return prev;
-    }
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        //l1=reverse(l1);
-        //l2=reverse(l2);
         if(l1==NULL){
             return l2;
         }
