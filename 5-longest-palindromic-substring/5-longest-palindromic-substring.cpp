@@ -23,7 +23,7 @@ public:
         }
         int ansi=0,ansj=0,res=1;
         for(int i=0;i<n;i++){
-            for(int j=0;j<n;j++){
+            for(int j=i+1;j<n;j++){
                 if(dp[i][j]){
                     //res=max(res,abs(j-i+1));
                     if(abs(j-i+1)>res){
