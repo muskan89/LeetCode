@@ -20,6 +20,9 @@ public:
                 }
             }
         }      
-        return dp[n][amount]==INT_MAX-1 ? -1 : dp[n][amount];
+        if(dp[n][amount]==INT_MAX-1){
+            return -1;
+        }
+        return dp[n][amount];
     }
 };
