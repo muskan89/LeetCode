@@ -13,6 +13,7 @@ public:
                 string h=s.substr(j,i-j);
                 if(dp[j] && mp[h]){
                     dp[i]=true;
+                    break;
                 }
             }
         }
