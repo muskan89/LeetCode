@@ -28,6 +28,9 @@ public:
             ans=root->val;
             return;
         }
+        if(!k){
+            return;
+        }
         inorder(root->right,k);
     }
 };
