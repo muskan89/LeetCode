@@ -20,7 +20,18 @@ public:
             }
         }
         vector<bool>vis(n,false);
-        dfs(adj,vis,0);
+        stack<int>stk;
+        stk.push(0);
+        while(!stk.empty()){
+            int q=stk.top();
+            stk.pop();
+            vis[q]=true;
+            for(int i=0;i<adj[q].size();i++){
+                if(vis[adj[q][i]]==false){
+                    stk.push(adj[q][i]);
+                }
+            }
+        }
         int flag=0;
         for(int i=0;i<n;i++){
             if(vis[i]==false){
