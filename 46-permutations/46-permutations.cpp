@@ -1,21 +1,23 @@
 class Solution {
 public:
-    vector<vector<int>>ans;
     vector<vector<int>> permute(vector<int>& nums) {
-        int n=nums.size();
-        solve(nums,0,n-1);
+        vector<vector<int>>ans;
+        vector<int>temp;
+        solve(ans,0,nums);
         return ans;
     }
-    void solve(vector<int>&nums, int start,int end){
-        cout<<start<<" "<<end<<"\n";
-        if(start==end){
+    
+    void solve(vector<vector<int>>&ans,int start,vector<int>& nums){
+        if(start>=nums.size()){
             ans.push_back(nums);
             return;
         }
-        for(int i=start;i<=end;i++){
-            swap(nums[start],nums[i]);
-            solve(nums,start+1,end);
+        
+        for(int i=start;i<nums.size();i++){
             swap(nums[i],nums[start]);
+            solve(ans,start+1,nums);
+            swap(nums[start],nums[i]);
+            
         }
     }
     
